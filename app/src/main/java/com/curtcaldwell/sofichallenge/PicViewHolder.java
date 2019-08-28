@@ -21,17 +21,20 @@ class PicViewHolder extends RecyclerView.ViewHolder {
     private View root;
 
 
+
     PicViewHolder(@NonNull View itemView) {
         super(itemView);
 
         picView = itemView.findViewById(R.id.pic);
         titleView = itemView.findViewById(R.id.title);
+
         root = itemView;
     }
 
     void SetData(CustomDisplayItem item, View.OnClickListener listener) {
         Picasso.get().load(item.getLink()).resize(1000,1000).placeholder(R.drawable.ic_image).error(R.drawable.ic_image).into(picView);
         titleView.setText(item.getTitle());
+
 
         root.setOnClickListener(listener);
     }

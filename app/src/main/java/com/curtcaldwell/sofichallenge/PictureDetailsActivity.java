@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -16,6 +17,8 @@ public class PictureDetailsActivity extends AppCompatActivity {
 
 
     private ImageView pictureImage;
+    private ImageView arrowView;
+
 
 
 
@@ -28,6 +31,15 @@ public class PictureDetailsActivity extends AppCompatActivity {
 
        getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 
+        arrowView = findViewById(R.id.back_arrow);
+
+       arrowView.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               onBackPressed();
+           }
+       });
+
 
 
 //        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -38,11 +50,14 @@ public class PictureDetailsActivity extends AppCompatActivity {
 
         TextView pictureText = findViewById(R.id.pic_title);
 
+
         pictureImage = findViewById(R.id.pic_image_view);
 
         pictureText.setText(getIntent().getStringExtra("title"));
 
         Picasso.get().load(getIntent().getStringExtra("link")).placeholder(R.drawable.ic_launcher_foreground).error(R.drawable.ic_launcher_background).into(pictureImage);
+
+        arrowView.bringToFront();
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
