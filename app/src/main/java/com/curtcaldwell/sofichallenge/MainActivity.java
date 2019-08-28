@@ -12,7 +12,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.Menu;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
@@ -65,8 +64,6 @@ public class MainActivity extends AppCompatActivity {
         progressBar.setVisibility(View.GONE);
     }
 
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
@@ -103,8 +100,6 @@ public class MainActivity extends AppCompatActivity {
                         } else {
                             emptyMsgText.setVisibility(View.VISIBLE);
                         }
-
-
                     }
                 });
                 return true;
@@ -115,7 +110,6 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-
     public static void hideKeyboard(Activity activity) {
         InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
         View view = activity.getCurrentFocus();
@@ -124,7 +118,6 @@ public class MainActivity extends AppCompatActivity {
         }
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
-
 
     public interface PictureClickListener {
         void onPictureClicked(CustomDisplayItem item);
@@ -137,11 +130,6 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("description", item.getDescription());
         startActivity(intent);
     }
-
-
-
-
-
 }
 
 
