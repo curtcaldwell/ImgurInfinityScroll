@@ -7,6 +7,8 @@ import android.app.SearchManager;
 import android.content.Intent;
 
 
+import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
@@ -77,7 +79,10 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
+
     }
+
 
 
     @Override
@@ -92,6 +97,10 @@ public class MainActivity extends AppCompatActivity {
             searchView.setSearchableInfo(searchManager
                     .getSearchableInfo(getComponentName()));
             searchView.setIconifiedByDefault(true);
+            searchView.setFocusable(true);
+            searchView.setIconified(false);
+            searchView.requestFocusFromTouch();
+
 
         }
 
@@ -152,6 +161,9 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("description", item.getDescription());
         startActivity(intent);
     }
+
+
+
 
 
 }

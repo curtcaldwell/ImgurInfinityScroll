@@ -4,7 +4,15 @@
     <item android:id="@+id/search"
         android:title="search"
         android:icon="@android:drawable/ic_menu_search"
-        app:showAsAction="collapseActionView|ifRoom"
-        app:actionViewClass="android.widget.SearchView" />
+        android:layout_alignParentRight="true"
+
+        android:layoutDirection="rtl"
+        app:actionViewClass="android.widget.SearchView"
+
+        android:iconifiedByDefault="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:showAsAction="ifRoom|collapseActionView" />
 </menu>
 
