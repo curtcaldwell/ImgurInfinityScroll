@@ -7,4 +7,5 @@
     <color name="background_grey">#ffeaeaea</color>
     <color name="text_grey">#909799</color>
     <color name="black">#000000</color>
+    <color name="black_alpha_40">#66000000</color>
 </resources>

@@ -1,22 +1,23 @@
 package com.curtcaldwell.sofichallenge;
 
-import android.content.Context;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.inputmethod.InputMethodManager;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import com.squareup.picasso.Picasso;
 
 public class PictureDetailsActivity extends AppCompatActivity {
 
-    private TextView pictureText;
-    private TextView descriptionText;
+
     private ImageView pictureImage;
-    public Context context;
+
+
 
 
     @Override
@@ -25,9 +26,17 @@ public class PictureDetailsActivity extends AppCompatActivity {
 
         setContentView(R.layout.picture_detail);
 
+       getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+
+
+
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+
         getWindow().getDecorView().setBackgroundColor(Color.BLACK);
 
-        pictureText = findViewById(R.id.pic_title);
+        TextView pictureText = findViewById(R.id.pic_title);
 
         pictureImage = findViewById(R.id.pic_image_view);
 

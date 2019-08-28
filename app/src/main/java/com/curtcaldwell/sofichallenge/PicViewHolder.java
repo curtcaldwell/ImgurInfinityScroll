@@ -14,14 +14,14 @@ import com.curtcaldwell.sofichallenge.model.CustomDisplayItem;
 import com.squareup.picasso.Picasso;
 
 
-public class PicViewHolder extends RecyclerView.ViewHolder {
+class PicViewHolder extends RecyclerView.ViewHolder {
 
-    ImageView picView;
-    TextView titleView;
-    View root;
+    private ImageView picView;
+    private TextView titleView;
+    private View root;
 
 
-    public PicViewHolder(@NonNull View itemView) {
+    PicViewHolder(@NonNull View itemView) {
         super(itemView);
 
         picView = itemView.findViewById(R.id.pic);
@@ -29,8 +29,8 @@ public class PicViewHolder extends RecyclerView.ViewHolder {
         root = itemView;
     }
 
-    public void SetData(CustomDisplayItem item, View.OnClickListener listener) {
-        Picasso.get().load(item.getLink()).resize(1000,1000).centerCrop().placeholder(R.drawable.ic_image).error(R.drawable.ic_image).into(picView);
+    void SetData(CustomDisplayItem item, View.OnClickListener listener) {
+        Picasso.get().load(item.getLink()).resize(1000,1000).placeholder(R.drawable.ic_image).error(R.drawable.ic_image).into(picView);
         titleView.setText(item.getTitle());
 
         root.setOnClickListener(listener);

@@ -33,20 +33,28 @@ public class ImgurDataSource extends PageKeyedDataSource<Integer, CustomDisplayI
                     for (int j = 0; j < images.size(); j++) {
                         if (images.get(j).getType().equals("image/jpeg") || images.get(j).getType().equals("image/png")) {
 
+
+
                             CustomDisplayItem item = new CustomDisplayItem();
                             item.setTitle(title);
                             item.setLink(images.get(j).getLink());
                             item.setDescription(images.get(j).getDescription());
                             displayItems.add(item);
+
+
                         }
+
                     }
+
                 }
+
             }
+
 
             } catch(IOException e){
                 e.printStackTrace();
             }
-            callback.onResult(displayItems, null, params.requestedLoadSize);
+            callback.onResult(displayItems, null, 1 + 1);
 
         }
     @Override
@@ -73,14 +81,19 @@ public class ImgurDataSource extends PageKeyedDataSource<Integer, CustomDisplayI
 
 
                             displayItems.add(item);
-                        }
+
+
+
+                            }
+
                     }
                 }
+
             }
 
         } catch(IOException e){
             e.printStackTrace();
         }
-        callback.onResult(displayItems, params.requestedLoadSize + 1);
+        callback.onResult(displayItems, params.key + 1);
     }
 }

@@ -75,10 +75,9 @@ public class MainActivity extends AppCompatActivity {
         if (null != searchView) {
             searchView.setSearchableInfo(searchManager
                     .getSearchableInfo(getComponentName()));
-            searchView.setIconifiedByDefault(true);
             searchView.setFocusable(true);
             searchView.setIconified(false);
-            searchView.requestFocusFromTouch();
+
         }
 
         SearchView.OnQueryTextListener queryTextListener = new SearchView.OnQueryTextListener() {
