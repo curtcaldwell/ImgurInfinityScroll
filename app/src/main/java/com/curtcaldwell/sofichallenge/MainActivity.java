@@ -4,6 +4,7 @@ package com.curtcaldwell.sofichallenge;
 import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Intent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ProgressBar;
@@ -36,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        final RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView = findViewById(R.id.recycler_view);
         progressBar = findViewById(R.id.progress_bar);
         emptyMsgText = findViewById(R.id.empty_msg);
@@ -62,7 +63,21 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
         progressBar.setVisibility(View.GONE);
+
+        recyclerView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(recyclerView.getWindowToken(), 0);
+
+                return false;
+            }
+        });
     }
+
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -129,6 +144,8 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("description", item.getDescription());
         startActivity(intent);
     }
+
+
 }
 
 
