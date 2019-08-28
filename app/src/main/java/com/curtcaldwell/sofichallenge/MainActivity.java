@@ -11,6 +11,8 @@ import android.widget.SearchView;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.Menu;
+import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
@@ -26,8 +28,9 @@ import com.curtcaldwell.sofichallenge.model.CustomDisplayItem;
 public class MainActivity extends AppCompatActivity {
 
     private PicAdapter adapter;
-    public LinearLayoutManager linearLayoutManager;
-    public static String input;
+    private RecyclerView recyclerView;
+    private ProgressBar progressBar;
+    private TextView emptyMsgText;
 
 
     @Override
@@ -35,8 +38,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-        RecyclerView recyclerView = findViewById(R.id.recycler_view);
-        ProgressBar progressBar = findViewById(R.id.progress_bar);
+        recyclerView = findViewById(R.id.recycler_view);
+        progressBar = findViewById(R.id.progress_bar);
+        emptyMsgText = findViewById(R.id.empty_msg);
+
         adapter = new PicAdapter(new DiffUtil.ItemCallback<CustomDisplayItem>() {
             @Override
             public boolean areItemsTheSame(@NonNull CustomDisplayItem oldItem, @NonNull CustomDisplayItem newItem) {
@@ -56,14 +61,17 @@ public class MainActivity extends AppCompatActivity {
         });
 
         recyclerView.setLayoutManager(layoutManager);
-        linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setAdapter(adapter);
         progressBar.setVisibility(View.GONE);
     }
 
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
+
+
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         final SearchView searchView = (SearchView) menu.findItem(R.id.search)
                 .getActionView();
@@ -82,13 +90,20 @@ public class MainActivity extends AppCompatActivity {
             }
 
             public boolean onQueryTextSubmit(String query) {
-                input = query;
                 final PagingViewModel pagingViewModel = new PagingViewModel(new RetroFitService(), query);
                 pagingViewModel.getLiveData().observe(MainActivity.this, new Observer<PagedList<CustomDisplayItem>>() {
                     @Override
                     public void onChanged(PagedList<CustomDisplayItem> customDisplayItems) {
+
                         adapter.submitList(customDisplayItems);
                         hideKeyboard(MainActivity.this);
+
+                        if (customDisplayItems.size() > 0) {
+                            emptyMsgText.setVisibility(View.GONE);
+                        } else {
+                            emptyMsgText.setVisibility(View.VISIBLE);
+                        }
+
 
                     }
                 });
@@ -100,6 +115,7 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+
     public static void hideKeyboard(Activity activity) {
         InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
         View view = activity.getCurrentFocus();
@@ -108,6 +124,7 @@ public class MainActivity extends AppCompatActivity {
         }
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
+
 
     public interface PictureClickListener {
         void onPictureClicked(CustomDisplayItem item);
@@ -120,6 +137,11 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("description", item.getDescription());
         startActivity(intent);
     }
+
+
+
+
+
 }
 
 

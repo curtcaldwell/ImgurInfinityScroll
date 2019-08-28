@@ -36,6 +36,7 @@
                 android:layout_gravity="center_horizontal"
                 android:gravity="center"
                 app:fontFamily="sans-serif-light"
+                android:textColor="@color/text_grey"
                 android:textStyle="bold"
                 tools:text="text" />
         </LinearLayout>
