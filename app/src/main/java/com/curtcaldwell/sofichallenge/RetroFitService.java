@@ -3,21 +3,17 @@ package com.curtcaldwell.sofichallenge;
 import com.curtcaldwell.sofichallenge.model.PicsResponse;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
-
 import retrofit2.Call;
-
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class RetroFitService {
-
+class RetroFitService {
 
     private PicApi picApi;
 
     private static final String BASE_URL = "https://api.imgur.com/3/gallery/search/";
 
-    public RetroFitService() {
+    RetroFitService() {
 
         Gson gson = new GsonBuilder()
                 .setLenient()
@@ -28,15 +24,12 @@ public class RetroFitService {
                 .build();
 
         picApi = retrofit.create(PicApi.class);
-
-
     }
 
-    public Call<PicsResponse> getPictureData(String input) {
+    Call<PicsResponse> getPictureData(String input) {
         return picApi.getPicsResponse(1, input);
 
     }
-
 }
 
 

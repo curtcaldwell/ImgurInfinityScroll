@@ -1,8 +1,5 @@
 package com.curtcaldwell.sofichallenge;
 
-
-
-
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.paging.LivePagedListBuilder;
@@ -11,14 +8,13 @@ import androidx.paging.PagedList;
 
 import com.curtcaldwell.sofichallenge.model.CustomDisplayItem;
 
-
-public class PagingViewModel extends ViewModel {
+class PagingViewModel extends ViewModel {
 
     private LiveData<PagedList<CustomDisplayItem>> liveData;
-    public LiveData<PageKeyedDataSource<Integer, CustomDisplayItem>> dataSourceLiveData;
+    private LiveData<PageKeyedDataSource<Integer, CustomDisplayItem>> dataSourceLiveData;
     private ImgurDataSourceFactory dataSourceFactory;
 
-    public PagingViewModel(RetroFitService service, String input) {
+    PagingViewModel(RetroFitService service, String input) {
         this.dataSourceFactory = new ImgurDataSourceFactory(service, input);
         this.dataSourceLiveData = this.dataSourceFactory.getLiveData();
         initializePaging();
@@ -32,10 +28,9 @@ public class PagingViewModel extends ViewModel {
                 .setPageSize(10)
                 .build();
         liveData = new LivePagedListBuilder(dataSourceFactory, config).build();
-
     }
 
-    public LiveData<PagedList<CustomDisplayItem>> getLiveData() {
+    LiveData<PagedList<CustomDisplayItem>> getLiveData() {
         return liveData;
     }
 }

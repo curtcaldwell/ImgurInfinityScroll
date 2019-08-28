@@ -3,28 +3,17 @@ package com.curtcaldwell.sofichallenge;
 
 import android.app.Activity;
 import android.app.SearchManager;
-
 import android.content.Intent;
-
-
-import android.view.Gravity;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-
 import android.widget.ProgressBar;
 import android.widget.SearchView;
-
-
 import android.content.Context;
-
 import android.os.Bundle;
 import android.view.Menu;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
-
 import androidx.paging.PagedList;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -37,8 +26,6 @@ import com.curtcaldwell.sofichallenge.model.CustomDisplayItem;
 public class MainActivity extends AppCompatActivity {
 
     private PicAdapter adapter;
-    private RecyclerView recyclerView;
-    private ProgressBar progressBar;
     public LinearLayoutManager linearLayoutManager;
     public static String input;
 
@@ -48,8 +35,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-        recyclerView = findViewById(R.id.recycler_view);
-        progressBar = findViewById(R.id.progress_bar);
+        RecyclerView recyclerView = findViewById(R.id.recycler_view);
+        ProgressBar progressBar = findViewById(R.id.progress_bar);
         adapter = new PicAdapter(new DiffUtil.ItemCallback<CustomDisplayItem>() {
             @Override
             public boolean areItemsTheSame(@NonNull CustomDisplayItem oldItem, @NonNull CustomDisplayItem newItem) {
@@ -66,30 +53,17 @@ public class MainActivity extends AppCompatActivity {
                 startPictureDetailsActivity(item);
 
             }
-
-
-
         });
-
 
         recyclerView.setLayoutManager(layoutManager);
         linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setAdapter(adapter);
         progressBar.setVisibility(View.GONE);
-
-
-
-
-
     }
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
-
-
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         final SearchView searchView = (SearchView) menu.findItem(R.id.search)
                 .getActionView();
@@ -100,8 +74,6 @@ public class MainActivity extends AppCompatActivity {
             searchView.setFocusable(true);
             searchView.setIconified(false);
             searchView.requestFocusFromTouch();
-
-
         }
 
         SearchView.OnQueryTextListener queryTextListener = new SearchView.OnQueryTextListener() {
@@ -115,30 +87,18 @@ public class MainActivity extends AppCompatActivity {
                 pagingViewModel.getLiveData().observe(MainActivity.this, new Observer<PagedList<CustomDisplayItem>>() {
                     @Override
                     public void onChanged(PagedList<CustomDisplayItem> customDisplayItems) {
-
                         adapter.submitList(customDisplayItems);
                         hideKeyboard(MainActivity.this);
 
                     }
                 });
-
-
                 return true;
-
-
             }
-
-
         };
-
         searchView.setOnQueryTextListener(queryTextListener);
 
-
         return true;
-
-
     }
-
 
     public static void hideKeyboard(Activity activity) {
         InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
@@ -148,7 +108,6 @@ public class MainActivity extends AppCompatActivity {
         }
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
-
 
     public interface PictureClickListener {
         void onPictureClicked(CustomDisplayItem item);
@@ -161,11 +120,6 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("description", item.getDescription());
         startActivity(intent);
     }
-
-
-
-
-
 }
 
 

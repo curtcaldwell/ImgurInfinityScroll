@@ -5,10 +5,9 @@
         android:title="search"
         android:icon="@android:drawable/ic_menu_search"
         android:layout_alignParentRight="true"
-
+        android:gravity="right"
         android:layoutDirection="rtl"
         app:actionViewClass="android.widget.SearchView"
-
         android:iconifiedByDefault="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

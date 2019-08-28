@@ -1,32 +1,24 @@
 package com.curtcaldwell.sofichallenge;
 
-
-
 import androidx.annotation.NonNull;
 import androidx.paging.PageKeyedDataSource;
-
 import com.curtcaldwell.sofichallenge.model.CustomDisplayItem;
 import com.curtcaldwell.sofichallenge.model.Datum;
 import com.curtcaldwell.sofichallenge.model.Image;
-
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 
 
-
 public class ImgurDataSource extends PageKeyedDataSource<Integer, CustomDisplayItem> {
 
-    RetroFitService retroFitService;
-    String input;
+    private RetroFitService retroFitService;
+    private String input;
 
-    public ImgurDataSource(RetroFitService r, String input) {
+    ImgurDataSource(RetroFitService r, String input) {
         retroFitService = r;
         this.input = input;
-
-
     }
 
     @Override
@@ -45,13 +37,9 @@ public class ImgurDataSource extends PageKeyedDataSource<Integer, CustomDisplayI
                             item.setTitle(title);
                             item.setLink(images.get(j).getLink());
                             item.setDescription(images.get(j).getDescription());
-
-
                             displayItems.add(item);
                         }
                     }
-
-
                 }
             }
 
@@ -63,9 +51,6 @@ public class ImgurDataSource extends PageKeyedDataSource<Integer, CustomDisplayI
         }
     @Override
     public void loadBefore(@NonNull LoadParams<Integer> params, @NonNull LoadCallback<Integer, CustomDisplayItem> callback) {
-
-
-
     }
 
     @Override
@@ -90,8 +75,6 @@ public class ImgurDataSource extends PageKeyedDataSource<Integer, CustomDisplayI
                             displayItems.add(item);
                         }
                     }
-
-
                 }
             }
 
@@ -99,9 +82,5 @@ public class ImgurDataSource extends PageKeyedDataSource<Integer, CustomDisplayI
             e.printStackTrace();
         }
         callback.onResult(displayItems, params.requestedLoadSize + 1);
-
-
     }
-
-
 }

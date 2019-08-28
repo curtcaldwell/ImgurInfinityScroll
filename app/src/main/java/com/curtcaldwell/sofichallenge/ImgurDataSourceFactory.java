@@ -1,6 +1,5 @@
 package com.curtcaldwell.sofichallenge;
 
-
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 import androidx.paging.DataSource;
@@ -14,20 +13,16 @@ public class ImgurDataSourceFactory extends DataSource.Factory<Integer, CustomDi
 
     private RetroFitService service;
 
-    public ImgurDataSourceFactory(RetroFitService service, String input) {
+    ImgurDataSourceFactory(RetroFitService service, String input) {
         this.service = service;
         this.input = input;
     }
 
     private MutableLiveData<PageKeyedDataSource<Integer, CustomDisplayItem>> liveData = new MutableLiveData();
 
-    public MutableLiveData<PageKeyedDataSource<Integer, CustomDisplayItem>> getLiveData() {
+    MutableLiveData<PageKeyedDataSource<Integer, CustomDisplayItem>> getLiveData() {
         return liveData;
     }
-
-
-
-
 
     @NonNull
     @Override

@@ -1,18 +1,13 @@
 package com.curtcaldwell.sofichallenge;
 
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-
 import androidx.annotation.NonNull;
-
 import androidx.paging.PagedListAdapter;
-
 import androidx.recyclerview.widget.DiffUtil;
-
 import com.curtcaldwell.sofichallenge.model.CustomDisplayItem;
+
 
 
 public class PicAdapter extends PagedListAdapter<CustomDisplayItem, PicViewHolder> {
@@ -20,11 +15,10 @@ public class PicAdapter extends PagedListAdapter<CustomDisplayItem, PicViewHolde
 
     MainActivity.PictureClickListener listener;
 
-    protected PicAdapter(@NonNull DiffUtil.ItemCallback<CustomDisplayItem> diffCallback, MainActivity.PictureClickListener pictureClickListener) {
+    PicAdapter(@NonNull DiffUtil.ItemCallback<CustomDisplayItem> diffCallback, MainActivity.PictureClickListener pictureClickListener) {
         super(diffCallback);
         listener = pictureClickListener;
     }
-
 
     @NonNull
     @Override
@@ -43,9 +37,5 @@ public class PicAdapter extends PagedListAdapter<CustomDisplayItem, PicViewHolde
                 listener.onPictureClicked(getItem(i));
             }
         });
-
-
     }
-
-
 }
