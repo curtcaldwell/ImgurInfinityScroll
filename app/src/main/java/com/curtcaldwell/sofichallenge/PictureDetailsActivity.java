@@ -1,7 +1,6 @@
 package com.curtcaldwell.sofichallenge;
 
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -9,19 +8,13 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import com.squareup.picasso.Picasso;
 
 public class PictureDetailsActivity extends AppCompatActivity {
 
-
     private ImageView pictureImage;
     private ImageView arrowView;
-
-
-
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -40,16 +33,9 @@ public class PictureDetailsActivity extends AppCompatActivity {
            }
        });
 
-
-
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//        getSupportActionBar().setDisplayShowTitleEnabled(false);
-
-
         getWindow().getDecorView().setBackgroundColor(Color.BLACK);
 
         TextView pictureText = findViewById(R.id.pic_title);
-
 
         pictureImage = findViewById(R.id.pic_image_view);
 

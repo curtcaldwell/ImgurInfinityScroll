@@ -1,6 +1,7 @@
 package com.curtcaldwell.sofichallenge;
 
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Intent;
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView emptyMsgText;
 
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,9 +77,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -144,8 +143,6 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("description", item.getDescription());
         startActivity(intent);
     }
-
-
 }
 
 
