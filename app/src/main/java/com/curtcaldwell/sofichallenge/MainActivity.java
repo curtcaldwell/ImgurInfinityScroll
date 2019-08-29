@@ -30,9 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
     private PicAdapter adapter;
     private RecyclerView recyclerView;
-    private ProgressBar progressBar;
     private TextView emptyMsgText;
-
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -41,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         final RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView = findViewById(R.id.recycler_view);
-        progressBar = findViewById(R.id.progress_bar);
+        ProgressBar progressBar = findViewById(R.id.progress_bar);
         emptyMsgText = findViewById(R.id.empty_msg);
 
         adapter = new PicAdapter(new DiffUtil.ItemCallback<CustomDisplayItem>() {
@@ -81,8 +79,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
-
-
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         final SearchView searchView = (SearchView) menu.findItem(R.id.search)
                 .getActionView();
@@ -91,7 +87,6 @@ public class MainActivity extends AppCompatActivity {
                     .getSearchableInfo(getComponentName()));
             searchView.setFocusable(true);
             searchView.setIconified(false);
-
         }
 
         SearchView.OnQueryTextListener queryTextListener = new SearchView.OnQueryTextListener() {
@@ -118,6 +113,7 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         };
+        assert searchView != null;
         searchView.setOnQueryTextListener(queryTextListener);
 
         return true;

@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">SofiChallenge</string>
     <string name="empty_prompt_msg">Click the search icon to get started</string>
+    <string name="no_results_msg">No Results</string>
 </resources>

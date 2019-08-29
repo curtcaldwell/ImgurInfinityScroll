@@ -26,8 +26,8 @@ class RetroFitService {
         picApi = retrofit.create(PicApi.class);
     }
 
-    Call<PicsResponse> getPictureData(String input) {
-        return picApi.getPicsResponse(1, input);
+    Call<PicsResponse> getPictureData(Integer page, String input) {
+        return picApi.getPicsResponse(page, input);
 
     }
 }

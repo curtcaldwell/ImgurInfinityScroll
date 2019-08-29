@@ -9,11 +9,9 @@ import androidx.recyclerview.widget.DiffUtil;
 import com.curtcaldwell.sofichallenge.model.CustomDisplayItem;
 
 
-
 public class PicAdapter extends PagedListAdapter<CustomDisplayItem, PicViewHolder> {
 
-
-    MainActivity.PictureClickListener listener;
+    private MainActivity.PictureClickListener listener;
 
     PicAdapter(@NonNull DiffUtil.ItemCallback<CustomDisplayItem> diffCallback, MainActivity.PictureClickListener pictureClickListener) {
         super(diffCallback);

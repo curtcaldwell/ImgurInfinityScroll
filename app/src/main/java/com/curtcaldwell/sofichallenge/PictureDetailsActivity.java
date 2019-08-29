@@ -13,9 +13,6 @@ import com.squareup.picasso.Picasso;
 
 public class PictureDetailsActivity extends AppCompatActivity {
 
-    private ImageView pictureImage;
-    private ImageView arrowView;
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,7 +21,7 @@ public class PictureDetailsActivity extends AppCompatActivity {
 
        getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 
-        arrowView = findViewById(R.id.back_arrow);
+        ImageView arrowView = findViewById(R.id.back_arrow);
 
        arrowView.setOnClickListener(new View.OnClickListener() {
            @Override
@@ -37,7 +34,7 @@ public class PictureDetailsActivity extends AppCompatActivity {
 
         TextView pictureText = findViewById(R.id.pic_title);
 
-        pictureImage = findViewById(R.id.pic_image_view);
+        ImageView pictureImage = findViewById(R.id.pic_image_view);
 
         pictureText.setText(getIntent().getStringExtra("title"));
 

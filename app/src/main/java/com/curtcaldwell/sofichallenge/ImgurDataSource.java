@@ -25,7 +25,7 @@ public class ImgurDataSource extends PageKeyedDataSource<Integer, CustomDisplayI
     public void loadInitial(@NonNull LoadInitialParams<Integer> params, @NonNull final LoadInitialCallback<Integer, CustomDisplayItem> callback) {
         List<CustomDisplayItem> displayItems = new ArrayList<>();
         try {
-            List<Datum> items = retroFitService.getPictureData(input).execute().body().getData();
+            List<Datum> items = retroFitService.getPictureData(1, input).execute().body().getData();
             for (int i = 0; i < items.size(); i++) {
                 if (items.get(i).getImages() != null && items.get(i).getImages().size() != 0) {
                     String title = items.get(i).getTitle();
@@ -33,29 +33,20 @@ public class ImgurDataSource extends PageKeyedDataSource<Integer, CustomDisplayI
                     for (int j = 0; j < images.size(); j++) {
                         if (images.get(j).getType().equals("image/jpeg") || images.get(j).getType().equals("image/png")) {
 
-
-
                             CustomDisplayItem item = new CustomDisplayItem();
                             item.setTitle(title);
                             item.setLink(images.get(j).getLink());
                             item.setDescription(images.get(j).getDescription());
                             displayItems.add(item);
-
-
                         }
-
                     }
-
                 }
-
             }
-
 
             } catch(IOException e){
                 e.printStackTrace();
             }
             callback.onResult(displayItems, null, 1 + 1);
-
         }
     @Override
     public void loadBefore(@NonNull LoadParams<Integer> params, @NonNull LoadCallback<Integer, CustomDisplayItem> callback) {
@@ -66,7 +57,7 @@ public class ImgurDataSource extends PageKeyedDataSource<Integer, CustomDisplayI
 
         List<CustomDisplayItem> displayItems = new ArrayList<>();
         try {
-            List<Datum> items = retroFitService.getPictureData(input).execute().body().getData();
+            List<Datum> items = retroFitService.getPictureData(params.key, input).execute().body().getData();
             for (int i = 0; i < items.size(); i++) {
                 if (items.get(i).getImages() != null && items.get(i).getImages().size() != 0) {
                     String title = items.get(i).getTitle();
@@ -78,19 +69,11 @@ public class ImgurDataSource extends PageKeyedDataSource<Integer, CustomDisplayI
                             item.setTitle(title);
                             item.setLink(images.get(j).getLink());
                             item.setDescription(images.get(j).getDescription());
-
-
                             displayItems.add(item);
-
-
-
-                            }
-
+                        }
                     }
                 }
-
             }
-
         } catch(IOException e){
             e.printStackTrace();
         }
